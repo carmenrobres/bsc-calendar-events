@@ -40,11 +40,6 @@ Puedes marcar "Recordar en este navegador" para no tener que escribirlos cada ve
 - **Numerada** — lista numerada
 - **Tabla** — con filas y columnas editables
 
-## Contraseña de edición
-
-La contraseña está en el archivo `index.html` (línea con `const PASSWORD`).
-Para cambiarla, edita esa línea directamente en el archivo.
-
 ## Personalización
 
 Edita `data.json` directamente para cambiar:
