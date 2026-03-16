@@ -673,16 +673,15 @@ tr.row-past:hover td{opacity:.75}
 /* ══ CONTENT MAX-WIDTH & SOFT CONTAINERS ══ */
 /* Give table, gantt, calendar a max-width feel with padding */
 #v-tabla { padding: 0; }
-.tbl-wrap { 
-  max-width: 100%; 
-  padding: 0 24px 32px; 
+.tbl-wrap {
+  max-width: 100%;
+  padding: 0 0 24px;
 }
 table { margin-top: 0; }
 
 #v-gantt .gantt-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 28px 32px 52px;
+  max-width: 100%;
+  padding: 16px 20px 40px;
 }
 
 #v-cal { padding: 28px 32px; }
@@ -1896,10 +1895,7 @@ function exitSaveAndLeave(){
 }
 let exitAfterSave = false;
 
-function handleSaveBtn(){
-  const tok = document.getElementById('gh-tok').value.trim();
-  if(tok){ quickSaveGh(); } else { openGh(); }
-}
+function handleSaveBtn(){ saveData(); }
 
 function updUI(){
   document.getElementById('echip').classList.toggle('on',edit);
