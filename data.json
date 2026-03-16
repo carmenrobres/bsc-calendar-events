@@ -13,7 +13,9 @@
       "Tipo": "Evento",
       "URL": "https://www.smartcityexpo.com/",
       "attachments": [],
-      "id": "r1"
+      "editions": [],
+      "id": "r1",
+      "recurrent": false
     },
     {
       "Año": "2025",
@@ -28,7 +30,9 @@
       "Tipo": "Evento",
       "URL": "https://sites.google.com/view/dlbcn2025",
       "attachments": [],
-      "id": "r2"
+      "editions": [],
+      "id": "r2",
+      "recurrent": false
     },
     {
       "Año": "2025",
@@ -43,7 +47,9 @@
       "Tipo": "Evento",
       "URL": "https://www.techspirit.barcelona/",
       "attachments": [],
-      "id": "r3"
+      "editions": [],
+      "id": "r3",
+      "recurrent": false
     },
     {
       "Año": "2026",
@@ -58,7 +64,8 @@
       "Tipo": "Evento",
       "URL": "https://www.mwcbarcelona.com/",
       "attachments": [],
-      "id": "r4"
+      "id": "r4",
+      "recurrent": false
     },
     {
       "Año": "2026",
@@ -73,7 +80,9 @@
       "Tipo": "Evento",
       "URL": "https://websummit.com/",
       "attachments": [],
-      "id": "r5"
+      "editions": [],
+      "id": "r5",
+      "recurrent": false
     },
     {
       "Año": "2026",
@@ -88,7 +97,9 @@
       "Tipo": "Evento",
       "URL": "",
       "attachments": [],
-      "id": "r6"
+      "editions": [],
+      "id": "r6",
+      "recurrent": false
     },
     {
       "Año": "2026",
@@ -103,7 +114,9 @@
       "Tipo": "Evento",
       "URL": "",
       "attachments": [],
-      "id": "r7"
+      "editions": [],
+      "id": "r7",
+      "recurrent": false
     },
     {
       "Año": "2026",
@@ -118,7 +131,9 @@
       "Tipo": "Evento",
       "URL": "",
       "attachments": [],
-      "id": "r8"
+      "editions": [],
+      "id": "r8",
+      "recurrent": false
     },
     {
       "Año": "2026",
@@ -133,7 +148,9 @@
       "Tipo": "Funding call",
       "URL": "https://eic.ec.europa.eu/eic-funding-opportunities/eic-pathfinder_en",
       "attachments": [],
-      "id": "r9"
+      "editions": [],
+      "id": "r9",
+      "recurrent": false
     },
     {
       "Año": "2026",
@@ -148,7 +165,9 @@
       "Tipo": "Funding call",
       "URL": "https://eic.ec.europa.eu/eic-funding-opportunities/eic-transition_en",
       "attachments": [],
-      "id": "r10"
+      "editions": [],
+      "id": "r10",
+      "recurrent": false
     },
     {
       "Año": "2026",
@@ -163,7 +182,9 @@
       "Tipo": "Funding call",
       "URL": "https://www.cdti.es/ayudas/proyectos-de-id-de-transferencia-tecnologica-cervera-0",
       "attachments": [],
-      "id": "r11"
+      "editions": [],
+      "id": "r11",
+      "recurrent": false
     },
     {
       "Año": "2026",
@@ -178,7 +199,9 @@
       "Tipo": "Funding call",
       "URL": "https://eic.ec.europa.eu/eic-funding-opportunities/eic-accelerator_en",
       "attachments": [],
-      "id": "r12"
+      "editions": [],
+      "id": "r12",
+      "recurrent": false
     },
     {
       "Año": "2026",
@@ -193,7 +216,9 @@
       "Tipo": "Funding call",
       "URL": "https://agaur.gencat.cat/es/beques-i-ajuts/convocatories-per-temes/02-21429-IdC-Producte",
       "attachments": [],
-      "id": "r13"
+      "editions": [],
+      "id": "r13",
+      "recurrent": false
     },
     {
       "Año": "2026",
@@ -208,7 +233,9 @@
       "Tipo": "Funding call",
       "URL": "https://agaur.gencat.cat/en/beques-i-ajuts/convocatories-per-temes/01-21430-IdC-LLavor",
       "attachments": [],
-      "id": "r14"
+      "editions": [],
+      "id": "r14",
+      "recurrent": false
     },
     {
       "Año": "2026",
@@ -223,7 +250,30 @@
       "Tipo": "Funding call",
       "URL": "https://agaur.gencat.cat/es/beques-i-ajuts/convocatories-per-temes/03-21892-IdC-Innovadors",
       "attachments": [],
-      "id": "r15"
+      "editions": [],
+      "id": "r15",
+      "recurrent": false
+    },
+    {
+      "Lugar": "Barcelona",
+      "Mes habitual": "Marzo",
+      "Nombre": "Mobile World Congress",
+      "Notas": "",
+      "Tipo": "Evento",
+      "URL": "https://www.mwcbarcelona.com/",
+      "attachments": [],
+      "editions": [
+        {
+          "Año": "",
+          "Equipo Líder": "ibd@bsc.es",
+          "Estado": "Listo",
+          "Fecha exacta (fin)": "2026-03-02",
+          "Fecha exacta (inicio)": "2026-03-02",
+          "Notas": ""
+        }
+      ],
+      "id": "rsnt4pmea",
+      "recurrent": true
     }
   ]
 }
