@@ -18,11 +18,6 @@
       "recurrent": false
     },
     {
-      "Año": "2025",
-      "Equipo Líder": "",
-      "Estado": "No tenemos participación",
-      "Fecha exacta (fin)": "2025-12-17",
-      "Fecha exacta (inicio)": "2025-12-17",
       "Lugar": "Barcelona, Cataluña, España",
       "Mes habitual": "Diciembre",
       "Nombre": "Deep Learning Barcelona Symposium 2025",
@@ -32,7 +27,7 @@
       "attachments": [],
       "editions": [],
       "id": "r2",
-      "recurrent": false
+      "recurrent": true
     },
     {
       "Año": "2025",
@@ -275,28 +270,6 @@
       "editions": [],
       "id": "r4nkwgs63",
       "recurrent": false
-    },
-    {
-      "Lugar": "",
-      "Mes habitual": "Febrero",
-      "Nombre": "tech",
-      "Notas": "",
-      "Tipo": "Evento",
-      "URL": "",
-      "attachments": [],
-      "editions": [
-        {
-          "Año": "",
-          "Equipo Líder": "",
-          "Estado": "Sin empezar",
-          "Fecha exacta (fin)": "",
-          "Fecha exacta (inicio)": "2026-10-01",
-          "Notas": "",
-          "attachments": []
-        }
-      ],
-      "id": "rl3080ht7",
-      "recurrent": true
     }
   ]
 }
