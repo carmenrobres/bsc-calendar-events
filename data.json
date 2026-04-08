@@ -375,22 +375,6 @@
       ],
       "id": "rpb43fduy",
       "recurrent": true
-    },
-    {
-      "Año": "2026",
-      "Equipo": [],
-      "Estado": "Sin empezar",
-      "Fecha exacta (fin)": "",
-      "Fecha exacta (inicio)": "",
-      "Lugar": "",
-      "Mes habitual": [],
-      "Nombre": "test",
-      "Notas": "",
-      "PublicObjectiu": [],
-      "Tipo": "Evento",
-      "URL": "",
-      "id": "rg9w5nom3",
-      "recurrent": false
     }
   ]
 }
