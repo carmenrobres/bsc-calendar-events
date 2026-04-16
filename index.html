@@ -150,6 +150,18 @@ body {
 }
 .filter-btn:hover { border-color: var(--bsc-blue-mid); color: var(--bsc-blue); }
 .filter-btn.active { background: var(--bsc-blue); border-color: var(--bsc-blue); color: white; }
+.reset-filters-btn {
+  background: white;
+  border: 1px solid var(--grey-border);
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-size: 11px;
+  font-family: inherit;
+  cursor: pointer;
+  color: var(--text-mid);
+  transition: all 0.12s;
+}
+.reset-filters-btn:hover { background: var(--bsc-blue); color: white; border-color: var(--bsc-blue); }
 
 /* toggle switch */
 .toggle-row {
@@ -483,10 +495,25 @@ tbody tr:hover .row-actions { opacity: 1; }
   padding: 2px 5px; border-radius: 3px;
   margin-bottom: 2px;
   cursor: pointer;
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   transition: opacity 0.1s;
 }
 .cal-event:hover { opacity: 0.8; }
+.cal-event-name {
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.cal-event-cont .cal-event-name { opacity: 0.75; }
+.cal-event-tags { margin-top: 2px; line-height: 1; }
+.cal-team-mini {
+  display: inline-block;
+  padding: 1px 4px;
+  border-radius: 2px;
+  font-size: 9px;
+  font-weight: 700;
+  margin-right: 2px;
+}
+.cal-tag-factory    { background: #dbeafe; color: #1e3a8a; }
+.cal-tag-innovation { background: #ffedd5; color: #c2410c; }
+.cal-tag-connects   { background: #cffafe; color: #0e7490; }
 .cal-evento { background: #dbeafe; color: #1e40af; }
 .cal-funding { background: #d1fae5; color: #065f46; }
 .cal-funding-end { background: #fef3c7; color: #92400e; }
@@ -822,7 +849,10 @@ tbody tr:hover .row-actions { opacity: 1; }
   <div class="sidebar-divider"></div>
 
   <div class="sidebar-section">
-    <div class="sidebar-label">Filtros</div>
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 8px 6px">
+      <div class="sidebar-label" style="padding:0">Filtros</div>
+      <button class="reset-filters-btn" onclick="resetFilters()">↺ Reset</button>
+    </div>
 
     <div class="filter-group">
       <div class="filter-label">Tipo</div>
@@ -1093,6 +1123,24 @@ function toggleHideRecNoFuture(cb) {
   render();
 }
 
+function resetFilters() {
+  filt.tipo = ''; filt.est = ''; filt.año = '';
+  filt.hidePast = false; filt.hideRecurrentNoFuture = false;
+  filt.equipo = []; filt.public = [];
+  document.getElementById('search-input').value = '';
+  document.getElementById('hide-past-toggle').checked = false;
+  document.getElementById('hide-rec-nofuture-toggle').checked = false;
+  ['tipo','equipo','public'].forEach(key => {
+    document.querySelectorAll(`[data-filter="${key}"]`).forEach(b => b.classList.remove('active'));
+    const all = document.querySelector(`[data-filter="${key}"][data-val=""]`);
+    if (all) all.classList.add('active');
+  });
+  document.querySelectorAll('[data-filter="año"]').forEach(b => b.classList.remove('active'));
+  const allYear = document.querySelector('[data-filter="año"][data-val=""]');
+  if (allYear) allYear.classList.add('active');
+  render();
+}
+
 // ─── VIEWS ────────────────────────────────────────────────────────────────────
 function setView(v) {
   currentView = v;
@@ -1303,6 +1351,14 @@ function renderOrient() {
 }
 
 // ─── EXACT CALENDAR ───────────────────────────────────────────────────────────
+function calTeamTagsHtml(row) {
+  const eq = row.Equipo || [];
+  if (!eq.length) return '';
+  const cls = { 'BSC AI Factory': 'cal-tag-factory', 'Innovation': 'cal-tag-innovation', 'Connects': 'cal-tag-connects' };
+  const lbl = { 'BSC AI Factory': 'AI Factory', 'Innovation': 'Innovation', 'Connects': 'Connects' };
+  return '<div class="cal-event-tags">' + eq.map(e => `<span class="cal-team-mini ${cls[e]||''}">${lbl[e]||e}</span>`).join('') + '</div>';
+}
+
 function renderCalendar() {
   const now = new Date();
   const firstDay = new Date(calYear, calMonth, 1);
@@ -1330,15 +1386,26 @@ function renderCalendar() {
         if (checkDate && new Date(checkDate + 'T00:00:00') < now2) return;
       }
       if (inicio) {
-        const d = new Date(inicio + 'T00:00:00');
-        if (d.getFullYear() === calYear && d.getMonth() === calMonth) {
-          events.push({ day: d.getDate(), label: r.Nombre || r._parentNombre, tipo: r.Tipo, kind: 'start', row: r });
-        }
-      }
-      if (fin && r.Tipo === 'Funding call') {
-        const d = new Date(fin + 'T00:00:00');
-        if (d.getFullYear() === calYear && d.getMonth() === calMonth) {
-          events.push({ day: d.getDate(), label: '⏰ ' + (r.Nombre || r._parentNombre), tipo: r.Tipo, kind: 'deadline', row: r });
+        const startDate = new Date(inicio + 'T00:00:00');
+        const endDate   = fin ? new Date(fin + 'T00:00:00') : startDate;
+        const monthStart = new Date(calYear, calMonth, 1);
+        const monthEnd   = new Date(calYear, calMonth + 1, 0);
+        // Show event on every day it spans within this month
+        if (startDate <= monthEnd && endDate >= monthStart) {
+          const rangeStart = startDate < monthStart ? new Date(monthStart) : new Date(startDate);
+          const rangeEnd   = endDate   > monthEnd   ? new Date(monthEnd)   : new Date(endDate);
+          for (let cur = new Date(rangeStart); cur <= rangeEnd; cur.setDate(cur.getDate() + 1)) {
+            const isStart = cur.getTime() === startDate.getTime();
+            const isEnd   = cur.getTime() === endDate.getTime();
+            events.push({
+              day: cur.getDate(),
+              label: r.Nombre || r._parentNombre,
+              tipo: r.Tipo,
+              kind: isStart ? 'start' : (isEnd ? 'end' : 'middle'),
+              isStart,
+              row: r
+            });
+          }
         }
       }
     });
@@ -1357,9 +1424,12 @@ function renderCalendar() {
     const dayEvents = events.filter(e => e.day === d);
     const evHtml = dayEvents.map(e => {
       const cc = getEquipoColor(e.row);
-      const bg  = e.kind === 'deadline' ? cc.solid : cc.bg;
-      const col = e.kind === 'deadline' ? 'white'  : cc.text;
-      return `<div class="cal-event" style="background:${bg};color:${col}" title="${e.label}" onclick="openDetailModal('${e.row.id}')">${e.label}</div>`;
+      const bg  = cc.bg;
+      const col = cc.text;
+      const isCont = e.kind === 'middle' || e.kind === 'end';
+      const displayLabel = isCont ? '↳ ' + e.label : e.label;
+      const tagsHtml = e.isStart ? calTeamTagsHtml(e.row) : '';
+      return `<div class="cal-event${isCont?' cal-event-cont':''}" style="background:${bg};color:${col}" title="${e.label}" onclick="openDetailModal('${e.row.id}')"><div class="cal-event-name">${displayLabel}</div>${tagsHtml}</div>`;
     }).join('');
     daysHtml += `<div class="cal-day${isToday?' today':''}">
       <div class="cal-day-num">${d}</div>
