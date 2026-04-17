@@ -523,6 +523,10 @@ tbody tr:hover .row-actions { opacity: 1; }
   cursor: pointer;
   transition: opacity 0.1s;
   overflow: hidden;
+  line-height: 1.5;
+  min-height: 18px;
+  display: flex;
+  align-items: center;
 }
 .cal-event:hover { opacity: 0.85; }
 /* Continuous multi-day event bars */
@@ -1535,9 +1539,8 @@ function renderCalendar() {
       else if (prevConn)        barClass = 'cal-event-end';
       else if (nextConn)        barClass = 'cal-event-start';
     }
-    const tagsHtml = e.isStart ? calTeamTagsHtml(e.row) : '';
-    const nameHtml = `<div class="cal-event-name">${showLabel ? e.label : ''}</div>`;
-    return `<div class="cal-event${barClass?' '+barClass:''}" style="background:${cc.bg};color:${cc.text}" title="${e.label}" onclick="openDetailModal('${e.row.id}')">${nameHtml}${tagsHtml}</div>`;
+    const nameHtml = `<div class="cal-event-name">${showLabel ? e.label : '&nbsp;'}</div>`;
+    return `<div class="cal-event${barClass?' '+barClass:''}" style="background:${cc.bg};color:${cc.text}" title="${e.label}" onclick="openDetailModal('${e.row.id}')">${nameHtml}</div>`;
   }
 
   // ── Render day cells ──────────────────────────────────────────────────────
