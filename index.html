@@ -54,6 +54,8 @@ body[data-section="funding"] {
 }
 /* Hide orient nav item when in internal section */
 body[data-section="internal"] [data-view="orient"] { display: none; }
+/* Hide recurring-without-future-date toggle in internal section (no recurring items) */
+body[data-section="internal"] .toggle-recurring-nofuture { display: none; }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -350,7 +352,7 @@ td.name-cell a:hover { text-decoration: underline; }
   font-size: 11px; font-weight: 500; white-space: nowrap;
 }
 .tipo-evento { background: #dbeafe; color: #1e40af; }
-.tipo-internal { background: #ede9fe; color: #5b21b6; }
+.tipo-internal { background: #e0f2fe; color: #0369a1; }
 .tipo-funding { background: #d1fae5; color: #065f46; }
 
 .estado-badge {
@@ -588,7 +590,7 @@ tbody tr:hover .row-actions { opacity: 1; }
 .cal-tag-innovation { background: #ffedd5; color: #c2410c; }
 .cal-tag-connects   { background: #cffafe; color: #0e7490; }
 .cal-evento { background: #dbeafe; color: #1e40af; }
-.cal-internal { background: #ede9fe; color: #5b21b6; }
+.cal-internal { background: #e0f2fe; color: #0369a1; }
 .cal-funding { background: #d1fae5; color: #065f46; }
 .cal-funding-end { background: #fef3c7; color: #92400e; }
 
@@ -964,7 +966,7 @@ tbody tr:hover .row-actions { opacity: 1; }
       <span class="toggle-track"></span>
     </label>
   </div>
-  <div class="toggle-row">
+  <div class="toggle-row toggle-recurring-nofuture">
     <span class="toggle-label">Hide recurring without future date</span>
     <label class="toggle-switch">
       <input type="checkbox" id="hide-rec-nofuture-toggle" onchange="toggleHideRecNoFuture(this)">
@@ -1256,7 +1258,7 @@ function render() {
 // Returns per-team color palette based on first/priority team
 function getEquipoColor(row) {
   if (row.Tipo === 'Funding call')   return { bg: '#dcfce7', text: '#15803d', solid: '#16a34a' };
-  if (row.Tipo === 'Internal Event') return { bg: '#ede9fe', text: '#5b21b6', solid: '#7c3aed' };
+  if (row.Tipo === 'Internal Event') return { bg: '#e0f2fe', text: '#0369a1', solid: '#0284c7' };
   return { bg: '#dbeafe', text: '#1e3a8a', solid: '#2563eb' }; // External Event (default blue)
 }
 
