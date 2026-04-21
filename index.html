@@ -1072,11 +1072,17 @@ async function init() {
 
 // ─── HELPERS ─────────────────────────────────────────────────────────────────
 const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+const MONTHS_ES = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
 const MONTHS_SHORT = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 const ESTADOS = ['Not started','In progress','Done','No participation'];
 const EQUIPOS = ['BSC AI Factory', 'Innovation', 'Connects'];
 const PUBLICS = ['Startup', 'SMEs', 'Research', 'Public Administrations', 'Corporate', 'Institutional'];
 const SCOPES  = ['International', 'Europe', 'Spain', 'Catalonia', 'Barcelona'];
+
+function monthIndex(m) {
+  const i = MONTHS.indexOf(m);
+  return i >= 0 ? i : MONTHS_ES.indexOf(m);
+}
 
 function uid() { return 'r' + Math.random().toString(36).substr(2,8); }
 
@@ -1437,7 +1443,7 @@ function renderOrient() {
     const getMinIdx = row => {
       const m = row['Mes habitual'];
       const arr = Array.isArray(m) ? m : (m ? [m] : []);
-      const idxs = arr.map(x => MONTHS.indexOf(x)).filter(i => i >= 0);
+      const idxs = arr.map(x => monthIndex(x)).filter(i => i >= 0);
       return idxs.length ? Math.min(...idxs) : 12;
     };
     return getMinIdx(a) - getMinIdx(b);
@@ -1447,7 +1453,7 @@ function renderOrient() {
   const rowsHtml = filtered.map(row => {
     const mesHabitual = row['Mes habitual'];
     const mesIdxs = (Array.isArray(mesHabitual) ? mesHabitual : (mesHabitual ? [mesHabitual] : []))
-      .map(m => MONTHS.indexOf(m)).filter(i => i >= 0);
+      .map(m => monthIndex(m)).filter(i => i >= 0);
     const oc = getEquipoColor(row);
     const cells = MONTHS.map((_, i) => {
       if (mesIdxs.includes(i)) {
