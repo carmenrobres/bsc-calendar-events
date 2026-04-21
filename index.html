@@ -1093,6 +1093,12 @@ function tipoBadge(tipo) {
   return `<span class="tipo-badge ${cls}">${label}</span>`;
 }
 
+function getEditionYear(ed) {
+  if (ed.Año) return ed.Año;
+  const d = ed['Fecha exacta (inicio)'] || ed['Fecha exacta (fin)'];
+  return d ? d.substring(0, 4) : '';
+}
+
 function formatDate(d) {
   if (!d) return '<span class="nodata">—</span>';
   const dt = new Date(d + 'T00:00:00');
@@ -1309,11 +1315,11 @@ function renderTable() {
     let fin    = row['Fecha exacta (fin)'];
     let año    = row.Año;
     if (row.recurrent && row.editions?.length) {
-      const latest = row.editions.sort((a,b) => (b.Año||0)-(a.Año||0))[0];
+      const latest = row.editions.slice().sort((a,b) => (getEditionYear(b)||0)-(getEditionYear(a)||0))[0];
       estado = latest.Estado;
       inicio = latest['Fecha exacta (inicio)'];
       fin    = latest['Fecha exacta (fin)'];
-      año    = row.editions.map(e=>e.Año).filter(Boolean).sort().reverse().join(', ');
+      año    = getEditionYear(latest);
     }
     const nameCell = `<span style="cursor:pointer;color:var(--bsc-blue);font-weight:500" onclick="openDetailModal('${row.id}')">${row.Nombre}</span>`;
     const recBadge = row.recurrent ? `<span class="recurrent-badge">↺ Recurring</span>` : '';
@@ -1327,7 +1333,6 @@ function renderTable() {
     const ec = getEquipoColor(row);
     return `<tr class="${past}" style="box-shadow: inset 4px 0 0 ${ec.solid}">
       <td class="name-cell">${nameCell}${recBadge}</td>
-      <td>${tipoBadge(row.Tipo)}</td>
       <td style="font-size:11px">${publicTags(row)}</td>
       <td style="font-size:11px">${teamTags(row)}</td>
       <td class="date-cell">${formatDate(inicio)}</td>
@@ -1344,7 +1349,6 @@ function renderTable() {
     <table class="${tableCls}">
       <thead><tr>
         ${th('Nombre','Name')}
-        ${th('Tipo','Type')}
         <th>Target Audience</th>
         <th>BSC Team</th>
         ${th('Fecha exacta (inicio)','Start')}
@@ -1746,13 +1750,13 @@ function openDetailModal(id) {
   // Edition cards for recurrent items — each is an expandable card with full info
   let editionsHtml = '';
   if (row.recurrent && row.editions?.length) {
-    const sortedEds = [...row.editions].sort((a,b) => (b.Año||0)-(a.Año||0));
+    const sortedEds = [...row.editions].sort((a,b) => (getEditionYear(b)||0)-(getEditionYear(a)||0));
     editionsHtml = '<div class="detail-editions"><div class="form-section-title">📅 Annual editions</div>';
     sortedEds.forEach((ed, i) => {
       const edId = 'det-ed-' + i;
       editionsHtml += '<div class="edition-card" style="margin-bottom:8px">'
         + '<div class="edition-card-header" onclick="document.getElementById(\'' + edId + '\').classList.toggle(\'open\')">'
-        + '<span class="edition-year">' + (ed.Año||'No year') + '</span>'
+        + '<span class="edition-year">' + (getEditionYear(ed)||'No year') + '</span>'
         + estadoBadge(ed.Estado)
         + '</div>'
         + '<div class="edition-card-body open" id="' + edId + '">'
