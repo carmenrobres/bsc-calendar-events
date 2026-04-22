@@ -679,6 +679,25 @@
       "URL": "",
       "id": "rpuw04nhf",
       "recurrent": false
+    },
+    {
+      "Ambito": "",
+      "Año": "2026",
+      "Equipo": [],
+      "Estado": "Not started",
+      "Fecha exacta (fin)": "2026-05-10",
+      "Fecha exacta (inicio)": "2026-05-10",
+      "Lugar": "",
+      "Mes habitual": [
+        "May"
+      ],
+      "Nombre": "MY BIRTHDAY PARTY",
+      "Notas": "",
+      "PublicObjectiu": [],
+      "Tipo": "Evento",
+      "URL": "",
+      "id": "rcdgpboum",
+      "recurrent": false
     }
   ]
 }
