@@ -634,6 +634,32 @@
       "editions": [],
       "id": "rcsqlfxt1",
       "recurrent": false
+    },
+    {
+      "Ambito": "Europe",
+      "Año": "2026",
+      "Equipo": [
+        "BSC AI Factory",
+        "Innovation",
+        "Connects"
+      ],
+      "Estado": "In progress",
+      "Fecha exacta (fin)": "2026-05-10",
+      "Fecha exacta (inicio)": "2026-04-22",
+      "Lugar": "PANAMA",
+      "Mes habitual": [
+        "January",
+        "February",
+        "November",
+        "December"
+      ],
+      "Nombre": "PIC: OPALA (Z)",
+      "Notas": "",
+      "PublicObjectiu": [],
+      "Tipo": "Funding call",
+      "URL": "",
+      "id": "rfbfhvl0z",
+      "recurrent": false
     }
   ]
 }
