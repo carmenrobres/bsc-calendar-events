@@ -25,7 +25,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - - name: Inject secrets into HTML
+      - name: Inject secrets into HTML
           env:
             DATA_TOKEN: ${{ secrets.DATA_TOKEN }}
             PASSWORD: ${{ secrets.PASSWORD }}
