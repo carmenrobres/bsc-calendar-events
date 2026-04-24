@@ -23,7 +23,7 @@ Ve a: **Settings → Secrets and variables → Actions → New repository secret
 
 1. Abre la web
 2. Haz clic en **"Editar contenido"** (sidebar inferior)
-3. Contraseña: `IBD1234`
+3. Contraseña: `XXXX`
 4. Edita lo que necesites
 5. Clic en **"Guardar"** → los datos se publican automáticamente
 
