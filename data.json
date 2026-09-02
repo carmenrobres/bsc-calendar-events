@@ -648,8 +648,30 @@
       "PublicObjectiu": [],
       "Tipo": "Evento",
       "URL": "",
+      "editions": [],
       "id": "rk2cidrrq",
       "recurrent": false
+    },
+    {
+      "Ambito": "",
+      "Equipo": [
+        "BSC AI Factory",
+        "Innovation",
+        "Connects"
+      ],
+      "Lugar": "",
+      "Mes habitual": [
+        "January",
+        "February"
+      ],
+      "Nombre": "Test",
+      "Notas": "",
+      "PublicObjectiu": [],
+      "Tipo": "Evento",
+      "URL": "",
+      "editions": [],
+      "id": "rxb4kguw0",
+      "recurrent": true
     }
   ]
 }
